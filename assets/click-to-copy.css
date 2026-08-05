@@ -1,0 +1,47 @@
+/*
+ * Structural and reset rules only — no colors, no borders, no background.
+ *
+ * Every visual property Elementor exposes as a control (color, background,
+ * border, padding, typography, icon size/spacing, border radius) is
+ * deliberately left out of this file, and none of those controls have a
+ * hardcoded color default either. That means a freshly placed button
+ * inherits your active theme's own button styling automatically, and
+ * only changes once you actually touch a control in the Style panel.
+ * It's also what makes style-panel edits appear instantly in the editor
+ * preview, since there's no competing CSS for Elementor's own rules to
+ * fight against.
+ */
+
+.ctcew-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-family: inherit;
+	text-transform: none;
+	letter-spacing: normal;
+	text-decoration: none;
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+
+.ctcew-button--full-width {
+	width: 100%;
+}
+
+.ctcew-button--copied {
+	/* Reserved for any future state-specific structural needs.
+	   Actual copied-state colors are set from the Style panel. */
+}
+
+.ctcew-button:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.ctcew-button__icon {
+	flex-shrink: 0;
+	line-height: 1;
+}

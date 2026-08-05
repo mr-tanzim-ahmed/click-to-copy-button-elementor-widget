@@ -1,0 +1,264 @@
+# Click to Copy Button Elementor Widget
+
+A lightweight Elementor widget that lets visitors copy coupon codes, referral links, API keys, wallet addresses, and other short text with a single click or tap.
+
+Designed with **cross-browser compatibility**, including a tested workaround for **Safari and iOS**, where the Clipboard API alone is often unreliable.
+
+---
+
+## Features
+
+- 📋 One-click copy to clipboard
+- 📱 Reliable copying on **iPhone & Safari**
+- 🎨 Full Elementor Style controls
+- 🔤 Typography and Text Shadow controls
+- 🎨 Background (Solid & Gradient)
+- 🟦 Border Type, Width, Color & Radius
+- 🌟 Box Shadow support
+- 📏 Padding controls
+- 🖱️ Separate **Normal** and **Hover** styling
+- 🔗 Optional Link field (copy first, then redirect)
+- ⭐ Elementor Icon Library support
+- 🔄 Adjustable icon position and spacing
+- 🏷️ Dynamic Tags support
+- 🌿 ACF Dynamic Tags support (Elementor Pro)
+- ♿ Accessible (`aria-label`, `aria-live`, keyboard focus)
+- ⚡ Lightweight (single shared CSS & JS loaded once)
+
+---
+
+## Requirements
+
+| Requirement | Version |
+|------------|---------|
+| WordPress | 6.0+ |
+| Tested up to | 6.6 |
+| PHP | 7.4+ |
+| Elementor | Latest Recommended |
+
+---
+
+## Installation
+
+### Method 1 — Upload Plugin
+
+1. Download the plugin ZIP.
+2. Go to **WordPress Dashboard → Plugins → Add New**.
+3. Click **Upload Plugin**.
+4. Upload the ZIP file.
+5. Activate the plugin.
+6. Make sure **Elementor** is installed and activated.
+
+### Method 2 — Manual Installation
+
+Upload the plugin folder to:
+
+```
+wp-content/plugins/click-to-copy-button-elementor-widget
+```
+
+Then activate it from:
+
+```
+Dashboard → Plugins
+```
+
+---
+
+## Usage
+
+1. Edit a page with Elementor.
+2. Search for:
+
+```
+Click to Copy Button
+```
+
+3. Drag the widget onto your page.
+4. Enter the text visitors should copy.
+5. Customize the button appearance using Elementor's Style panel.
+6. (Optional) Add a destination link to redirect users after copying.
+
+---
+
+## Widget Settings
+
+### Content
+
+- Copy Text
+- Button Text
+- Copied Message
+- Optional Link
+- Open in New Window
+- Button ID
+- Icon
+- Icon Position
+- Icon Spacing
+
+### Style
+
+#### Text
+
+- Typography
+- Text Color
+- Text Shadow
+
+#### Background
+
+- Solid
+- Gradient
+
+#### Border
+
+- Border Type
+- Border Width
+- Border Color
+- Border Radius
+
+#### Shadow
+
+- Box Shadow
+
+#### Layout
+
+- Padding
+- Alignment
+
+#### States
+
+- Normal
+- Hover
+
+---
+
+## Dynamic Tags
+
+Supports Elementor Dynamic Tags for:
+
+- Copy Text
+- Copied Message
+- Optional Link
+
+When Elementor Pro is installed, ACF Dynamic Tags are also supported.
+
+---
+
+## Browser Compatibility
+
+Tested on:
+
+- ✅ Chrome
+- ✅ Edge
+- ✅ Firefox
+- ✅ Safari
+- ✅ iOS Safari
+- ✅ Android Chrome
+
+Unlike many clipboard plugins, this widget includes an iOS-friendly fallback to improve copy reliability on Safari.
+
+---
+
+## Accessibility
+
+The widget includes:
+
+- `aria-label`
+- `aria-live`
+- Keyboard focus styles
+- Semantic button markup
+
+---
+
+## Changelog
+
+### Version 1.0.3
+
+- Removed hardcoded default colors.
+- Button now inherits the active theme styles until customized.
+- Border Type defaults to **None**.
+- Increased asset version to avoid browser cache issues.
+
+### Version 1.0.2
+
+- Renamed internal CSS classes.
+- Removed Minimum Width control.
+- Switched to Elementor `add_render_attribute()` API.
+- Added accessibility improvements.
+- Improved Elementor live preview compatibility.
+
+### Version 1.0.1
+
+- Added optional Link field.
+- Added Icon Library support.
+- Added Button ID.
+- Added Normal/Hover styling.
+- Added Dynamic Tags support.
+
+### Version 1.0.0
+
+- Initial release.
+
+---
+
+## Frequently Asked Questions
+
+### Does it work on iPhone and Safari?
+
+Yes.
+
+The widget includes an iOS-specific fallback instead of relying solely on the Clipboard API, making copy actions significantly more reliable on Safari.
+
+---
+
+### Does the Link field require Elementor Pro?
+
+No.
+
+The Link field works in the free version of Elementor.
+
+Only ACF Dynamic Tags require Elementor Pro.
+
+---
+
+### Can I copy things other than coupon codes?
+
+Absolutely.
+
+Common use cases include:
+
+- Coupon Codes
+- Promo Codes
+- Referral Codes
+- Affiliate Codes
+- Wallet Addresses
+- API Keys
+- License Keys
+- Email Addresses
+- Phone Numbers
+- Short URLs
+- Custom Text
+
+---
+
+## Why this plugin?
+
+Many copy-to-clipboard widgets fail silently on Safari and iOS because they depend only on the modern Clipboard API.
+
+This plugin was built specifically to solve that problem while remaining lightweight, accessible, and fully integrated with Elementor's styling system.
+
+---
+
+## Author
+
+**Tanzim Ahmed**
+
+GitHub:
+https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget
+
+---
+
+## License
+
+GPL v2 or later
+
+https://www.gnu.org/licenses/gpl-2.0.html
