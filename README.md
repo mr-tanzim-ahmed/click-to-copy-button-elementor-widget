@@ -254,11 +254,3 @@ This plugin was built specifically to solve that problem while remaining lightwe
 
 GitHub:
 https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget
-
----
-
-## License
-
-GPL v2 or later
-
-https://www.gnu.org/licenses/gpl-2.0.html
