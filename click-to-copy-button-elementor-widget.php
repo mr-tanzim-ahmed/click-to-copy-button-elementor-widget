@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Click to Copy Button Elementor Widget
- * Plugin URI: https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget
+ * Plugin URI: https://codifycore.com/
  * Description: Adds a "Click to Copy" button widget to Elementor. Great for coupon codes, referral links, API keys, or any short text a visitor needs to copy in one tap — with a Safari/iOS-safe clipboard fallback and full Elementor style controls.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Requires Plugins: elementor
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'CTCEW_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CTCEW_URL', plugin_dir_url( __FILE__ ) );
-define( 'CTCEW_VERSION', '1.0.3' );
+define( 'CTCEW_VERSION', '1.0.4' );
 define( 'CTCEW_MIN_ELEMENTOR_VERSION', '3.5.0' );
 define( 'CTCEW_MIN_PHP_VERSION', '7.4' );
 
@@ -106,9 +106,9 @@ add_action(
 	'elementor/elements/categories_registered',
 	function ( $elements_manager ) {
 		$elements_manager->add_category(
-			'codifycore',
+			'click-to-copy',
 			[
-				'title' => __( 'CodifyCore', 'click-to-copy-elementor-widget' ),
+				'title' => __( 'Click to Copy', 'click-to-copy-elementor-widget' ),
 				'icon'  => 'fa fa-plug',
 			]
 		);
