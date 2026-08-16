@@ -11,7 +11,7 @@
  * Elementor Pro tested up to: 3.26
  * Author: Tanzim Ahmed
  * Author URI: https://github.com/mr-tanzim-ahmed
- * License: GPL-2.0+
+ * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: click-to-copy-elementor-widget
  * Domain Path: /languages
