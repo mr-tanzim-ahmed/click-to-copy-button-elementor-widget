@@ -1,50 +1,191 @@
-/*
- * Structural and reset rules only — no colors, no borders, no background.
- *
- * Every visual property Elementor exposes as a control (color, background,
- * border, padding, typography, icon size/spacing, border radius) is
- * deliberately left out of this file, and none of those controls have a
- * hardcoded color default either. That means a freshly placed button
- * inherits your active theme's own button styling automatically, and
- * only changes once you actually touch a control in the Style panel.
- * It's also what makes style-panel edits appear instantly in the editor
- * preview, since there's no competing CSS for Elementor's own rules to
- * fight against.
- */
+/* =========================================================
+   Click to Copy Button - Default Styling
+   ========================================================= */
 
 .ctcew-button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	cursor: pointer;
-	font-family: inherit;
-	text-transform: none;
-	letter-spacing: normal;
-	text-decoration: none;
-	-webkit-appearance: none;
-	appearance: none;
-	margin: 0;
-	background: none;
-	border: none;
-	color: inherit;
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 12px 16px;
+
+    /* Colors and Background */
+    background-color: transparent;
+    background-image: linear-gradient(300deg, #7C3AED 0%, var(--e-global-color-38100f9, #4F46E5) 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+
+    /* Typography */
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: none;
+    letter-spacing: normal;
+    text-decoration: none;
+
+    /* Behavior */
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
+/* Override standard button alignments if left/right is chosen in Elementor */
+.elementor-widget-container {
+    text-align: inherit;
+}
 .ctcew-button--full-width {
-	width: 100%;
+    width: 100%;
 }
 
-.ctcew-button--copied {
-	/* Reserved for any future state-specific structural needs.
-	   Actual copied-state colors are set from the Style panel. */
+/* =========================================================
+   HOVER / FOCUS
+   ========================================================= */
+
+.ctcew-button:hover,
+.ctcew-button:focus,
+.ctcew-button:focus-visible,
+.ctcew-button:visited {
+    background-color: transparent;
+    background-image: linear-gradient(300deg, #7C3AED 0%, var(--e-global-color-38100f9, #4F46E5) 100%);
+    color: #FFFFFF;
+    border-color: transparent;
+    box-shadow: none;
+    outline: none;
 }
 
-.ctcew-button:focus-visible {
-	outline: 2px solid currentColor;
-	outline-offset: 2px;
+/* Click feedback */
+.ctcew-button:active {
+    transform: scale(0.99);
 }
+
+/* =========================================================
+   COUPON TEXT
+   ========================================================= */
+
+.ctcew-button__text {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    text-align: center;
+}
+
+/* =========================================================
+   COPY ICON
+   ========================================================= */
 
 .ctcew-button__icon {
-	flex-shrink: 0;
-	line-height: 1;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    max-width: 16px;
+    display: block;
+    flex: 0 0 16px;
+    fill: currentColor;
+    color: inherit;
+}
+
+.ctcew-button:hover .ctcew-button__icon,
+.ctcew-button:focus .ctcew-button__icon,
+.ctcew-button:active .ctcew-button__icon {
+    fill: currentColor;
+    color: inherit;
+}
+
+/* =========================================================
+   COPIED STATE
+   ========================================================= */
+
+.ctcew-button.ctcew-button--copied,
+.ctcew-button.ctcew-button--copied:hover,
+.ctcew-button.ctcew-button--copied:focus {
+    background-color: transparent;
+    background-image: linear-gradient(300deg, #7C3AED 0%, var(--e-global-color-38100f9, #4F46E5) 100%);
+    color: #FFFFFF;
+}
+
+/* =========================================================
+   RESPONSIVE (Elementor Default Breakpoints)
+   ========================================================= */
+
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .ctcew-button {
+        min-height: 42px;
+        padding: 11px 15px;
+        gap: 9px;
+        font-size: 15px;
+    }
+    .ctcew-button__text {
+        font-size: 15px;
+    }
+    .ctcew-button__icon {
+        width: 15px;
+        height: 15px;
+        min-width: 15px;
+        max-width: 15px;
+        flex-basis: 15px;
+    }
+}
+
+/* Mobile: 767px and below */
+@media (max-width: 767px) {
+    .ctcew-button {
+        min-height: 40px;
+        padding: 10px 12px;
+        gap: 8px;
+        font-size: 13px;
+        border-radius: 10px;
+        touch-action: manipulation;
+    }
+    .ctcew-button__text {
+        font-size: 13px;
+    }
+    .ctcew-button__icon {
+        width: 14px;
+        height: 14px;
+        min-width: 14px;
+        max-width: 14px;
+        flex-basis: 14px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .ctcew-button {
+        min-height: 38px;
+        padding: 9px 10px;
+        gap: 7px;
+        font-size: 12px;
+        border-radius: 9px;
+    }
+    .ctcew-button__text {
+        font-size: 12px;
+    }
+    .ctcew-button__icon {
+        width: 13px;
+        height: 13px;
+        min-width: 13px;
+        max-width: 13px;
+        flex-basis: 13px;
+    }
 }

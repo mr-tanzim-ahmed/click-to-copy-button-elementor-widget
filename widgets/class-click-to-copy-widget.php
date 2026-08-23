@@ -219,8 +219,8 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 			[
 				'label'       => __( 'Text & Icon Color', 'click-to-copy-elementor-widget' ),
 				'type'        => \Elementor\Controls_Manager::COLOR,
-				'default'     => '',
-				'description' => __( 'Leave empty to inherit your theme\'s default button text color.', 'click-to-copy-elementor-widget' ),
+				'default'     => '#FFFFFF',
+				'description' => __( 'Choose the color for the button text and icon.', 'click-to-copy-elementor-widget' ),
 				'selectors'   => [
 					'{{WRAPPER}} .ctcew-button'       => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ctcew-button__icon' => 'color: {{VALUE}}; fill: {{VALUE}};',
@@ -420,8 +420,6 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 	 */
 	private function set_button_attributes( array $settings ) {
 		// Strip HTML tags and decode entities (e.g. from ACF fields) so we only copy plain text.
-		$code    = html_entity_decode( wp_strip_all_tags( $settings['code_text'] ), ENT_QUOTES, 'UTF-8' );
-		$stretch = ( 'stretch' === $settings['position'] );
 
 		$this->add_render_attribute( 'button', 'type', 'button' );
 		$this->add_render_attribute( 'button', 'class', 'ctcew-button' );
@@ -475,7 +473,7 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				<?php \Elementor\Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true', 'class' => 'ctcew-button__icon' ] ); ?>
 			<?php endif; ?>
 
-			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( $settings['code_text'] ); ?></span>
+			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( wp_strip_all_tags( $settings['code_text'] ) ); ?></span>
 
 			<?php if ( $has_icon && 'after' === $icon_pos ) : ?>
 				<?php \Elementor\Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true', 'class' => 'ctcew-button__icon' ] ); ?>

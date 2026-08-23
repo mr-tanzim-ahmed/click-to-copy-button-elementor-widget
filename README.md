@@ -171,6 +171,15 @@ The widget includes:
 
 ## Changelog
 
+### Version 1.0.5
+
+- **Fix**: Critical clipboard fallback bug resolved. The button now correctly copies text on iOS Safari and older devices using an improved legacy method.
+- **Fix**: Resolved an issue where the copy script and styles wouldn't load when placed inside an Elementor Loop template with ACF dynamic tags.
+- **Fix**: JS logic completely rewritten to be synchronous and optimizer-friendly, fixing silent failures on some WordPress configurations.
+- **Update**: Added automatic cache clearing (Elementor, WP Rocket, LiteSpeed, etc.) upon plugin deactivation or deletion to prevent stale layout issues.
+- **Update**: Improved default styling with a responsive layout, a purple gradient, and an animated icon swap (copy to checkmark) upon clicking.
+- **UI**: Rearranged Elementor Style panel controls for better usability (Border Type → Border Radius → Box Shadow now uses native Elementor Group Controls).
+
 ### Version 1.0.3
 
 - Removed hardcoded default colors.
