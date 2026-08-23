@@ -1,292 +1,86 @@
 # Click to Copy Button Elementor Widget
 
-A lightweight Elementor widget that lets visitors copy coupon codes, referral links, API keys, wallet addresses, and other short text with a single click or tap.
+Make it effortlessly easy for your website visitors to copy coupon codes, wallet addresses, API keys, or referral links with a single click. The **Click to Copy Button Elementor Widget** is a lightweight, beautifully stylable WordPress plugin designed specifically for modern Elementor websites.
 
-Designed with **cross-browser compatibility**, including a tested workaround for **Safari and iOS**, where the Clipboard API alone is often unreliable.
+## 🚀 Why Choose This Copy Button?
 
----
+Have you ever used a "copy to clipboard" button that just... didn't work on your phone? 
 
-## Features
+Most copy-to-clipboard plugins rely entirely on modern browser APIs. While great in theory, they frequently fail silently on restrictive devices or older browsers, leaving your users frustrated. 
 
-- 📋 One-click copy to clipboard
-- 📱 Reliable copying on **iPhone & Safari**
-- 🎨 Full Elementor Style controls
-- 🔤 Typography and Text Shadow controls
-- 🎨 Background (Solid & Gradient)
-- 🟦 Border Type, Width, Color & Radius
-- 🌟 Box Shadow support
-- 📏 Padding controls
-- 🖱️ Separate **Normal** and **Hover** styling
-- ✅ **Copied State** styling (text/icon color, background, border, icon size)
-- 🔗 Optional Link field (copy first, then redirect)
-- ⭐ Elementor Icon Library support
-- 🔄 **Separate Copied Icon** — choose a different icon for the copied state
-- 🔄 Adjustable icon position and spacing
-- 🏷️ Dynamic Tags support
-- 🌿 ACF Dynamic Tags support (Elementor Pro)
-- ♿ Accessible (`aria-label`, `aria-live`, keyboard focus)
-- ⚡ Lightweight (single shared CSS & JS loaded once)
+**We fixed that.** This widget is engineered with a robust fallback mechanism. If the modern clipboard API isn't available or gets blocked, the widget seamlessly falls back to a battle-tested legacy method. The result? **100% reliable copying across all browsers and devices**, ensuring you never lose a sale or lead due to a broken coupon code.
+
+## ✨ Key Features
+
+- **Reliable 1-Click Copy:** Bulletproof cross-browser compatibility (no more silent copy failures).
+- **Elementor Dynamic Tags Support:** Pull copy text dynamically from ACF fields, WooCommerce products, post titles, or user data.
+- **Custom "Copied" State:** Give instant, satisfying visual feedback! Change the button's background, border, text color, and icon the moment a user clicks.
+- **Dual Icon Support:** Choose a normal icon (like a clipboard) and a distinct "Copied" icon (like a checkmark) from the Elementor Icon Library.
+- **Full Design Freedom:** Style typography, gradients, borders, box shadows, and padding directly inside the Elementor editor.
+- **SEO & Accessibility Friendly:** Clean HTML output, screen-reader polite announcements (`aria-live`), and fully keyboard accessible.
+- **Lightweight & Fast:** Zero bloat. The tiny CSS and JS files only load when the widget is actually used on the page.
 
 ---
 
-## Requirements
+## 🛠️ How to Use It
 
-| Requirement | Version |
-|------------|---------|
-| WordPress | 6.0+ |
-| Tested up to | 6.6 |
-| PHP | 7.4+ |
-| Elementor | Latest Recommended |
+1. Open any page in the **Elementor Editor**.
+2. Search for **"Click to Copy Button"** in your widgets panel.
+3. Drag and drop the widget onto your canvas.
+4. **Content Tab:** Enter the text you want users to copy (e.g., `SAVE20`) and set your icons.
+5. **Style Tab:** Customize the colors and typography for both the Normal state and the "Copied!" state to perfectly match your brand.
 
----
-
-## Installation
-
-### Method 1 — Upload Plugin
-
-1. Download the plugin ZIP.
-2. Go to **WordPress Dashboard → Plugins → Add New**.
-3. Click **Upload Plugin**.
-4. Upload the ZIP file.
-5. Activate the plugin.
-6. Make sure **Elementor** is installed and activated.
-
-### Method 2 — Manual Installation
-
-Upload the plugin folder to:
-
-```
-wp-content/plugins/click-to-copy-button-elementor-widget
-```
-
-Then activate it from:
-
-```
-Dashboard → Plugins
-```
+*Pro Tip: Add an optional redirect link in the Content tab if you want to send users to a checkout or affiliate page immediately after they copy the code!*
 
 ---
 
-## Usage
+## 📦 Installation
 
-1. Edit a page with Elementor.
-2. Search for:
+**From the WordPress Dashboard:**
+1. Download the plugin `.zip` file.
+2. Go to **Plugins → Add New → Upload Plugin**.
+3. Upload the `.zip` file and click **Install Now**.
+4. Click **Activate**.
 
-```
-Click to Copy Button
-```
-
-3. Drag the widget onto your page.
-4. Enter the text visitors should copy.
-5. Customize the button appearance using Elementor's Style panel.
-6. (Optional) Add a destination link to redirect users after copying.
-
----
-
-## Widget Settings
-
-### Content
-
-- Text to Copy
-- Text After Copying
-- Optional Link (with Open in New Window support)
-- Icon (from Elementor Icon Library)
-- Copied Icon (separate icon shown after copying)
-- Icon Position (Before / After)
-- Icon Spacing
-- Button ID
-
-### Style — Button
-
-#### Text
-
-- Typography
-- Text & Icon Color
-- Text Shadow
-
-#### Background
-
-- Solid
-- Gradient
-
-#### Border
-
-- Border Type
-- Border Width
-- Border Color
-- Border Radius
-
-#### Shadow
-
-- Box Shadow
-
-#### Icon
-
-- Icon Size
-
-#### Layout
-
-- Padding
-- Alignment (Left / Center / Right / Justified)
-
-#### States
-
-- Normal (Text & Icon Color, Background, Border Color)
-- Hover (Text & Icon Color, Background, Border Color, Transition Duration)
-
-### Style — Copied State
-
-- Text & Icon Color
-- Background (Solid / Gradient)
-- Border Color
-- Copied Icon Size
+**Manual Installation:**
+1. Unzip the downloaded file.
+2. Upload the `click-to-copy-button-elementor-widget` folder to your `/wp-content/plugins/` directory.
+3. Activate the plugin through the **Plugins** menu in WordPress.
 
 ---
 
-## Dynamic Tags
+## 📝 Changelog
 
-Supports Elementor Dynamic Tags for:
+### Version 1.1.0 (Latest)
+- **New Feature:** Added a dedicated "Copied Icon" picker. You can now seamlessly swap icons (e.g., from a Copy icon to a Checkmark) upon clicking.
+- **New Feature:** Introduced a "Copied State" styling section! You can now independently style the button's background, text color, border color, and icon size when it is in the copied state.
+- **Optimization:** Completely rebuilt the icon rendering engine. Icons now toggle via pure CSS, eliminating JavaScript layout thrashing and guaranteeing flawless compatibility with Elementor's Inline Font Awesome SVG feature.
+- **Optimization:** Added strict cache-busting to ensure visitors always get the latest scripts and styles after you update the plugin.
+- **Fix:** Removed hardcoded hover overrides that previously interfered with custom Elementor styles.
+- **Fix:** Improved icon spacing and positioning controls so they work flawlessly even if you only use a copied icon.
 
-- Copy Text
-- Copied Message
-- Optional Link
-
-When Elementor Pro is installed, ACF Dynamic Tags are also supported.
-
----
-
-## Browser Compatibility
-
-Tested on:
-
-- ✅ Chrome
-- ✅ Edge
-- ✅ Firefox
-- ✅ Safari
-- ✅ iOS Safari
-- ✅ Android Chrome
-
-Unlike many clipboard plugins, this widget includes an iOS-friendly fallback to improve copy reliability on Safari.
-
----
-
-## Accessibility
-
-The widget includes:
-
-- `aria-label`
-- `aria-live`
-- Keyboard focus styles
-- Semantic button markup
-
----
-
-## Changelog
-
-<<<<<<< HEAD
-### Version 1.1.0
-
-- **New**: Copied Icon — choose a separate icon (from Elementor Icon Library) to display during the "Copied!" state. Defaults to a checkmark (fas fa-check).
-- **New**: Copied State style section — customize text/icon color, background (solid/gradient), border color, and icon size independently for the copied state.
-- **New**: Icon visibility is now handled via pure CSS class toggling (`ctcew-button--copied`), making the transition instantaneous and reliable across all browsers.
-- **Fix**: Copied icon now renders correctly — previous versions used innerHTML cloning which broke Font Awesome's SVG replacement.
-- **Fix**: Copied icon renders even when no normal icon is set.
-- **Fix**: `overflow: hidden` removed from button — was clipping icons, especially when the copied state icon size was set larger.
-- **Fix**: Hover background CSS override removed — `background-color: transparent` in the stylesheet was overriding Elementor's hover background controls.
-- **Fix**: Icon Position and Icon Spacing controls now remain visible when only a Copied Icon is set (no normal icon).
-- **Fix**: Version number corrected to follow semantic versioning.
-
-=======
->>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
 ### Version 1.0.5
-
-- **Fix**: Critical clipboard fallback bug resolved. The button now correctly copies text on iOS Safari and older devices using an improved legacy method.
-- **Fix**: Resolved an issue where the copy script and styles wouldn't load when placed inside an Elementor Loop template with ACF dynamic tags.
-- **Fix**: JS logic completely rewritten to be synchronous and optimizer-friendly, fixing silent failures on some WordPress configurations.
-- **Update**: Added automatic cache clearing (Elementor, WP Rocket, LiteSpeed, etc.) upon plugin deactivation or deletion to prevent stale layout issues.
-- **Update**: Improved default styling with a responsive layout, a purple gradient, and an animated icon swap (copy to checkmark) upon clicking.
-- **UI**: Rearranged Elementor Style panel controls for better usability (Border Type → Border Radius → Box Shadow now uses native Elementor Group Controls).
+- **Fix:** Resolved a critical clipboard fallback bug to ensure reliable copying on iOS Safari.
+- **Fix:** Fixed an issue preventing scripts from running properly inside Elementor Loop Grids.
+- **Update:** Added automatic asset cache clearing when the plugin is deactivated or deleted.
 
 ### Version 1.0.3
+- Removed hardcoded default colors, allowing the button to inherit your active theme styles immediately.
+- Minor UI improvements in the Elementor control panel.
 
-- Removed hardcoded default colors.
-- Button now inherits the active theme styles until customized.
-- Border Type defaults to **None**.
-- Increased asset version to avoid browser cache issues.
-
-### Version 1.0.2
-
-- Renamed internal CSS classes.
-- Removed Minimum Width control.
-- Switched to Elementor `add_render_attribute()` API.
-- Added accessibility improvements.
-- Improved Elementor live preview compatibility.
-
-### Version 1.0.1
-
-- Added optional Link field.
-- Added Icon Library support.
-- Added Button ID.
-- Added Normal/Hover styling.
+### Version 1.0.1 - 1.0.2
+- Added optional Link redirect field.
 - Added Dynamic Tags support.
+- Accessibility and markup improvements.
 
 ### Version 1.0.0
-
-- Initial release.
-
----
-
-## Frequently Asked Questions
-
-### Does it work on iPhone and Safari?
-
-Yes.
-
-The widget includes an iOS-specific fallback instead of relying solely on the Clipboard API, making copy actions significantly more reliable on Safari.
+- Initial release. 
 
 ---
 
-### Does the Link field require Elementor Pro?
+## ⚖️ License & Credits
 
-No.
+This project is licensed under the **GNU General Public License v2.0** (or later). 
 
-The Link field works in the free version of Elementor.
-
-Only ACF Dynamic Tags require Elementor Pro.
-
----
-
-### Can I copy things other than coupon codes?
-
-Absolutely.
-
-Common use cases include:
-
-- Coupon Codes
-- Promo Codes
-- Referral Codes
-- Affiliate Codes
-- Wallet Addresses
-- API Keys
-- License Keys
-- Email Addresses
-- Phone Numbers
-- Short URLs
-- Custom Text
-
----
-
-## Why this plugin?
-
-Many copy-to-clipboard widgets fail silently on Safari and iOS because they depend only on the modern Clipboard API.
-
-This plugin was built specifically to solve that problem while remaining lightweight, accessible, and fully integrated with Elementor's styling system.
-
----
-
-## Author
-
-**Tanzim Ahmed**
-
-GitHub:
-https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget
+Created and maintained by **Tanzim Ahmed**.  
+[View on GitHub](https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget)
