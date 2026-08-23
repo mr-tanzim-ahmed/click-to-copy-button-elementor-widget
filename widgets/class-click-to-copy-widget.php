@@ -225,8 +225,8 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 			[
 				'label'       => __( 'Text & Icon Color', 'click-to-copy-elementor-widget' ),
 				'type'        => \Elementor\Controls_Manager::COLOR,
-				'default'     => '',
-				'description' => __( 'Leave empty to inherit your theme\'s default button text color.', 'click-to-copy-elementor-widget' ),
+				'default'     => '#FFFFFF',
+				'description' => __( 'Choose the color for the button text and icon.', 'click-to-copy-elementor-widget' ),
 				'selectors'   => [
 					'{{WRAPPER}} .ctcew-button'       => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ctcew-button__icon' => 'color: {{VALUE}}; fill: {{VALUE}};',
@@ -462,9 +462,12 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 	 */
 	private function set_button_attributes( array $settings ) {
 		// Strip HTML tags and decode entities (e.g. from ACF fields) so we only copy plain text.
+<<<<<<< HEAD
 		$code_raw = isset( $settings['code_text'] ) && is_scalar( $settings['code_text'] ) ? (string) $settings['code_text'] : '';
 		$code     = html_entity_decode( wp_strip_all_tags( $code_raw ) );
 		$stretch  = ! empty( $settings['position'] ) && 'stretch' === $settings['position'];
+=======
+>>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
 
 		$this->add_render_attribute( 'button', 'type', 'button' );
 		$this->add_render_attribute( 'button', 'class', 'ctcew-button' );
@@ -544,10 +547,14 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				<?php endif; ?>
 			<?php endif; ?>
 
+<<<<<<< HEAD
 			<?php
 			$display_text = isset( $settings['code_text'] ) && is_scalar( $settings['code_text'] ) ? (string) $settings['code_text'] : '';
 			?>
 			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( wp_strip_all_tags( $display_text ) ); ?></span>
+=======
+			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( wp_strip_all_tags( $settings['code_text'] ) ); ?></span>
+>>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
 
 			<?php if ( $has_any_icon && 'after' === $icon_pos ) : ?>
 				<?php if ( $has_icon ) : ?>

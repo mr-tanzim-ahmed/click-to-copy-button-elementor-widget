@@ -183,6 +183,7 @@ The widget includes:
 
 ## Changelog
 
+<<<<<<< HEAD
 ### Version 1.1.0
 
 - **New**: Copied Icon — choose a separate icon (from Elementor Icon Library) to display during the "Copied!" state. Defaults to a checkmark (fas fa-check).
@@ -195,6 +196,8 @@ The widget includes:
 - **Fix**: Icon Position and Icon Spacing controls now remain visible when only a Copied Icon is set (no normal icon).
 - **Fix**: Version number corrected to follow semantic versioning.
 
+=======
+>>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
 ### Version 1.0.5
 
 - **Fix**: Critical clipboard fallback bug resolved. The button now correctly copies text on iOS Safari and older devices using an improved legacy method.
