@@ -251,15 +251,6 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
-
-		$this->add_group_control(
-			\Elementor\Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'button_box_shadow',
-				'selector' => '{{WRAPPER}} .ctcew-button',
-			]
-		);
-
 		$this->end_controls_tab();
 
 		// ---- Hover state ----
@@ -316,15 +307,6 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
-
-		$this->add_group_control(
-			\Elementor\Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'button_hover_box_shadow',
-				'selector' => '{{WRAPPER}} .ctcew-button:hover',
-			]
-		);
-
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
@@ -381,6 +363,14 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				'selectors'  => [
 					'{{WRAPPER}} .ctcew-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			[
+				'name'     => 'button_box_shadow',
+				'selector' => '{{WRAPPER}} .ctcew-button',
 			]
 		);
 

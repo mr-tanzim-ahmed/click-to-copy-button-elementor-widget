@@ -25,6 +25,9 @@
 	-webkit-appearance: none;
 	appearance: none;
 	margin: 0;
+	background: none;
+	border: none;
+	color: inherit;
 }
 
 .ctcew-button--full-width {
