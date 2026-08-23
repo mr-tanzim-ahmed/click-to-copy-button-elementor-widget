@@ -7,12 +7,14 @@
 	}
 	window.__ctcewInitialized = true;
 
-	document.addEventListener( 'click', async function ( event ) {
+	document.addEventListener( 'click', function ( event ) {
 		const button = event.target.closest( '.ctcew-button' );
 		if ( ! button ) {
 			return;
 		}
 
+		// Ensure we parse the code. Using Elementor dynamic tags (like ACF)
+		// might inject extra line breaks or spacing.
 		const textToCopy = ( button.dataset.code || '' ).trim();
 		if ( ! textToCopy ) {
 			return;
@@ -47,23 +49,39 @@
 			}
 		};
 
-		try {
-			// Modern approach
-			await navigator.clipboard.writeText( textToCopy );
-			updateUI( copiedLabel );
-		} catch ( error ) {
-			// Fallback for browsers where Clipboard API is unavailable
+		// Helper for legacy copy (must be synchronous for iOS Safari / older browsers)
+		const executeLegacyCopy = () => {
 			const textarea = document.createElement( 'textarea' );
 			textarea.value = textToCopy;
 			textarea.style.position = 'fixed';
 			textarea.style.opacity = '0';
+			// Keep it editable so execCommand works on all OSs
+			textarea.contentEditable = 'true';
+			textarea.readOnly = false;
 
 			document.body.appendChild( textarea );
-			textarea.select();
-			document.execCommand( 'copy' );
+			
+			// textarea.select() fails on iOS Safari, we must use setSelectionRange
+			textarea.focus();
+			textarea.setSelectionRange( 0, textToCopy.length );
+			
+			try {
+				document.execCommand( 'copy' );
+			} catch ( err ) {}
+			
 			textarea.remove();
-
 			updateUI( copiedLabel );
+		};
+
+		// Modern Clipboard API is only available in secure contexts (HTTPS).
+		// If it's missing, we MUST use the legacy fallback synchronously before
+		// the user gesture is lost.
+		if ( navigator.clipboard && navigator.clipboard.writeText ) {
+			navigator.clipboard.writeText( textToCopy )
+				.then( () => updateUI( copiedLabel ) )
+				.catch( () => executeLegacyCopy() ); // Fallback if permission denied
+		} else {
+			executeLegacyCopy();
 		}
 	} );
 } )();

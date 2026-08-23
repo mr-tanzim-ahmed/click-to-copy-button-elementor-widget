@@ -419,7 +419,8 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 	 * plays nicely with dynamic tags.
 	 */
 	private function set_button_attributes( array $settings ) {
-		$code    = $settings['code_text'];
+		// Strip HTML tags and decode entities (e.g. from ACF fields) so we only copy plain text.
+		$code    = html_entity_decode( wp_strip_all_tags( $settings['code_text'] ), ENT_QUOTES, 'UTF-8' );
 		$stretch = ( 'stretch' === $settings['position'] );
 
 		$this->add_render_attribute( 'button', 'type', 'button' );

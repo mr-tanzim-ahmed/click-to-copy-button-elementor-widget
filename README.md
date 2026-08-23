@@ -171,13 +171,6 @@ The widget includes:
 
 ## Changelog
 
-### Version 1.0.4
-
-- **Fix**: Resolved an issue where the copy script and styles wouldn't load when placed inside an Elementor Loop template with ACF dynamic tags.
-- **Fix**: Critical clipboard fallback bug resolved. The button now correctly copies text on iOS Safari and older devices using an improved legacy method.
-- **Update**: Rewrote the clipboard logic to use modern `async/await`.
-- **UI**: Rearranged Elementor Style panel controls for better usability (Border Type → Border Radius → Box Shadow now uses native Elementor Group Controls).
-
 ### Version 1.0.3
 
 - Removed hardcoded default colors.
