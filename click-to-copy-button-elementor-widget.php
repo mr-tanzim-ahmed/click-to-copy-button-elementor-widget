@@ -3,7 +3,7 @@
  * Plugin Name: Click to Copy Button Elementor Widget
  * Plugin URI: https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget
  * Description: Adds a "Click to Copy" button widget to Elementor. Great for coupon codes, referral links, API keys, or any short text a visitor needs to copy in one tap — with a Safari/iOS-safe clipboard fallback and full Elementor style controls.
- * Version: 1.0.4
+ * Version: 1.1.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Requires Plugins: elementor
@@ -24,9 +24,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'CTCEW_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CTCEW_URL', plugin_dir_url( __FILE__ ) );
-define( 'CTCEW_VERSION', '1.0.4' );
+define( 'CTCEW_VERSION', '1.1.0' );
 define( 'CTCEW_MIN_ELEMENTOR_VERSION', '3.5.0' );
 define( 'CTCEW_MIN_PHP_VERSION', '7.4' );
+
+/**
+ * Clear caches when the plugin is deactivated so the site doesn't
+ * serve stale CSS/JS.
+ */
+function ctcew_clear_caches_on_deactivation() {
+	// 1. Elementor CSS Cache
+	if ( class_exists( '\Elementor\Plugin' ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+
+	// 2. WP Rocket Cache
+	if ( function_exists( 'rocket_clean_domain' ) ) {
+		rocket_clean_domain();
+	}
+
+	// 3. LiteSpeed Cache
+	if ( has_action( 'litespeed_purge_all' ) ) {
+		do_action( 'litespeed_purge_all' );
+	}
+
+	// 4. Autoptimize Cache
+	if ( class_exists( 'autoptimizeCache' ) ) {
+		autoptimizeCache::clearall();
+	}
+
+	// 5. W3 Total Cache
+	if ( function_exists( 'w3tc_flush_all' ) ) {
+		w3tc_flush_all();
+	}
+
+	// 6. WP Super Cache
+	if ( function_exists( 'wp_cache_clear_cache' ) ) {
+		wp_cache_clear_cache();
+	}
+}
+register_deactivation_hook( __FILE__, 'ctcew_clear_caches_on_deactivation' );
 
 /**
  * Make sure Elementor (and the versions it needs) are actually available
@@ -123,17 +160,19 @@ add_action(
  * preview, which is what keeps style-panel changes updating instantly.
  */
 function ctcew_register_assets() {
-	wp_enqueue_style(
+	$asset_version = CTCEW_VERSION . '.' . filemtime( CTCEW_PATH . 'assets/click-to-copy.js' );
+	
+	wp_register_style(
 		'ctcew-style',
 		CTCEW_URL . 'assets/click-to-copy.css',
 		[],
-		CTCEW_VERSION
+		$asset_version
 	);
-	wp_enqueue_script(
+	wp_register_script(
 		'ctcew-script',
 		CTCEW_URL . 'assets/click-to-copy.js',
 		[],
-		CTCEW_VERSION,
+		$asset_version,
 		true
 	);
 }

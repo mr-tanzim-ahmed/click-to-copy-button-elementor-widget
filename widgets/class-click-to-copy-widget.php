@@ -108,6 +108,19 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
+			'copied_icon',
+			[
+				'label'   => __( 'Copied Icon', 'click-to-copy-elementor-widget' ),
+				'type'    => \Elementor\Controls_Manager::ICONS,
+				'default' => [
+					'value'   => 'fas fa-check',
+					'library' => 'fa-solid',
+				],
+				'description' => __( 'Icon shown after copying. Leave empty to hide icon in copied state.', 'click-to-copy-elementor-widget' ),
+			]
+		);
+
+		$this->add_control(
 			'icon_position',
 			[
 				'label'     => __( 'Icon Position', 'click-to-copy-elementor-widget' ),
@@ -124,7 +137,6 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				],
 				'default'   => 'before',
 				'toggle'    => false,
-				'condition' => [ 'selected_icon[value]!' => '' ],
 			]
 		);
 
@@ -136,7 +148,6 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				'size_units' => [ 'px' ],
 				'range'      => [ 'px' => [ 'min' => 0, 'max' => 30 ] ],
 				'default'    => [ 'unit' => 'px', 'size' => 8 ],
-				'condition'  => [ 'selected_icon[value]!' => '' ],
 				'selectors'  => [
 					'{{WRAPPER}} .ctcew-button' => 'gap: {{SIZE}}{{UNIT}};',
 				],
@@ -156,7 +167,7 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 
 		/* =========================================================
-		 * STYLE TAB
+		 * STYLE TAB — Button
 		 * ========================================================= */
 		$this->start_controls_section(
 			'style_section',
@@ -188,13 +199,8 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
-				'name'           => 'button_typography',
-				'selector'       => '{{WRAPPER}} .ctcew-button',
-				'fields_options' => [
-					'font_size'   => [ 'default' => [ 'unit' => 'px', 'size' => 14 ] ],
-					'font_weight' => [ 'default' => '600' ],
-					'line_height' => [ 'default' => [ 'unit' => 'px', 'size' => 17 ] ],
-				],
+				'name'     => 'button_typography',
+				'selector' => '{{WRAPPER}} .ctcew-button',
 			]
 		);
 
@@ -351,17 +357,9 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 			[
 				'label'      => __( 'Border Radius', 'click-to-copy-elementor-widget' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'default'    => [
-					'top'      => '12',
-					'right'    => '12',
-					'bottom'   => '12',
-					'left'     => '12',
-					'unit'     => 'px',
-					'isLinked' => true,
-				],
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors'  => [
-					'{{WRAPPER}} .ctcew-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ctcew-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
 				],
 			]
 		);
@@ -394,18 +392,62 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 			[
 				'label'      => __( 'Padding', 'click-to-copy-elementor-widget' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
-				'default'    => [
-					'top'      => '12',
-					'right'    => '18',
-					'bottom'   => '12',
-					'left'     => '18',
-					'unit'     => 'px',
-					'isLinked' => false,
-				],
+				'size_units' => [ 'px', 'em', 'rem', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .ctcew-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ctcew-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
 				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		/* =========================================================
+		 * STYLE TAB — Copied State
+		 * ========================================================= */
+		$this->start_controls_section(
+			'copied_state_section',
+			[
+				'label' => __( 'Copied State', 'click-to-copy-elementor-widget' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'copied_text_color',
+			[
+				'label'     => __( 'Text & Icon Color', 'click-to-copy-elementor-widget' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => [
+					'{{WRAPPER}} .ctcew-button--copied'                     => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ctcew-button--copied .ctcew-button__icon' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name'     => 'copied_background',
+				'types'    => [ 'classic', 'gradient' ],
+				'exclude'  => [ 'image' ],
+				'selector' => '{{WRAPPER}} .ctcew-button--copied',
+			]
+		);
+
+
+
+		$this->add_responsive_control(
+			'copied_icon_size',
+			[
+				'label'      => __( 'Icon Size', 'click-to-copy-elementor-widget' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [ 'px' => [ 'min' => 8, 'max' => 40 ] ],
+				'selectors'  => [
+					'{{WRAPPER}} .ctcew-button--copied .ctcew-button__icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; font-size: {{SIZE}}{{UNIT}}; line-height: 1;',
+				],
+				'condition'  => [ 'copied_icon[value]!' => '' ],
 			]
 		);
 
@@ -420,8 +462,9 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 	 */
 	private function set_button_attributes( array $settings ) {
 		// Strip HTML tags and decode entities (e.g. from ACF fields) so we only copy plain text.
-		$code    = html_entity_decode( wp_strip_all_tags( $settings['code_text'] ), ENT_QUOTES, 'UTF-8' );
-		$stretch = ( 'stretch' === $settings['position'] );
+		$code_raw = isset( $settings['code_text'] ) && is_scalar( $settings['code_text'] ) ? (string) $settings['code_text'] : '';
+		$code     = html_entity_decode( wp_strip_all_tags( $code_raw ) );
+		$stretch  = ! empty( $settings['position'] ) && 'stretch' === $settings['position'];
 
 		$this->add_render_attribute( 'button', 'type', 'button' );
 		$this->add_render_attribute( 'button', 'class', 'ctcew-button' );
@@ -460,10 +503,31 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 		}
 	}
 
+	/**
+	 * Render the icon HTML with an additional CSS class for show/hide toggling.
+	 *
+	 * @param array  $icon_value  The Elementor icon value array.
+	 * @param string $extra_class Additional CSS class (e.g. 'ctcew-button__normal-icon').
+	 */
+	private function render_icon_with_class( array $icon_value, $extra_class, $is_hidden = false ) {
+		$style = $is_hidden ? ' style="display: none;"' : '';
+		echo '<span class="' . esc_attr( $extra_class ) . '"' . $style . '>';
+		\Elementor\Icons_Manager::render_icon(
+			$icon_value,
+			[
+				'aria-hidden' => 'true',
+				'class'       => 'ctcew-button__icon',
+			]
+		);
+		echo '</span>';
+	}
+
 	protected function render() {
-		$settings = $this->get_settings_for_display();
-		$has_icon = ! empty( $settings['selected_icon']['value'] );
-		$icon_pos = ! empty( $settings['icon_position'] ) ? $settings['icon_position'] : 'before';
+		$settings        = $this->get_settings_for_display();
+		$has_icon        = ! empty( $settings['selected_icon']['value'] );
+		$has_copied_icon = ! empty( $settings['copied_icon']['value'] );
+		$has_any_icon    = $has_icon || $has_copied_icon;
+		$icon_pos        = ! empty( $settings['icon_position'] ) ? $settings['icon_position'] : 'before';
 
 		$this->set_button_attributes( $settings );
 
@@ -471,14 +535,27 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 		$this->add_render_attribute( 'text', 'aria-live', 'polite' ); // Announce "Copied!" to screen readers.
 		?>
 		<button <?php $this->print_render_attribute_string( 'button' ); ?>>
-			<?php if ( $has_icon && 'before' === $icon_pos ) : ?>
-				<?php \Elementor\Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true', 'class' => 'ctcew-button__icon' ] ); ?>
+			<?php if ( $has_any_icon && 'before' === $icon_pos ) : ?>
+				<?php if ( $has_icon ) : ?>
+					<?php $this->render_icon_with_class( $settings['selected_icon'], 'ctcew-button__normal-icon' ); ?>
+				<?php endif; ?>
+				<?php if ( $has_copied_icon ) : ?>
+					<?php $this->render_icon_with_class( $settings['copied_icon'], 'ctcew-button__copied-icon', true ); ?>
+				<?php endif; ?>
 			<?php endif; ?>
 
-			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( $settings['code_text'] ); ?></span>
+			<?php
+			$display_text = isset( $settings['code_text'] ) && is_scalar( $settings['code_text'] ) ? (string) $settings['code_text'] : '';
+			?>
+			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( wp_strip_all_tags( $display_text ) ); ?></span>
 
-			<?php if ( $has_icon && 'after' === $icon_pos ) : ?>
-				<?php \Elementor\Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true', 'class' => 'ctcew-button__icon' ] ); ?>
+			<?php if ( $has_any_icon && 'after' === $icon_pos ) : ?>
+				<?php if ( $has_icon ) : ?>
+					<?php $this->render_icon_with_class( $settings['selected_icon'], 'ctcew-button__normal-icon' ); ?>
+				<?php endif; ?>
+				<?php if ( $has_copied_icon ) : ?>
+					<?php $this->render_icon_with_class( $settings['copied_icon'], 'ctcew-button__copied-icon', true ); ?>
+				<?php endif; ?>
 			<?php endif; ?>
 		</button>
 		<?php

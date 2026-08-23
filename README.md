@@ -17,8 +17,10 @@ Designed with **cross-browser compatibility**, including a tested workaround for
 - 🌟 Box Shadow support
 - 📏 Padding controls
 - 🖱️ Separate **Normal** and **Hover** styling
+- ✅ **Copied State** styling (text/icon color, background, border, icon size)
 - 🔗 Optional Link field (copy first, then redirect)
 - ⭐ Elementor Icon Library support
+- 🔄 **Separate Copied Icon** — choose a different icon for the copied state
 - 🔄 Adjustable icon position and spacing
 - 🏷️ Dynamic Tags support
 - 🌿 ACF Dynamic Tags support (Elementor Pro)
@@ -85,22 +87,21 @@ Click to Copy Button
 
 ### Content
 
-- Copy Text
-- Button Text
-- Copied Message
-- Optional Link
-- Open in New Window
-- Button ID
-- Icon
-- Icon Position
+- Text to Copy
+- Text After Copying
+- Optional Link (with Open in New Window support)
+- Icon (from Elementor Icon Library)
+- Copied Icon (separate icon shown after copying)
+- Icon Position (Before / After)
 - Icon Spacing
+- Button ID
 
-### Style
+### Style — Button
 
 #### Text
 
 - Typography
-- Text Color
+- Text & Icon Color
 - Text Shadow
 
 #### Background
@@ -119,15 +120,26 @@ Click to Copy Button
 
 - Box Shadow
 
+#### Icon
+
+- Icon Size
+
 #### Layout
 
 - Padding
-- Alignment
+- Alignment (Left / Center / Right / Justified)
 
 #### States
 
-- Normal
-- Hover
+- Normal (Text & Icon Color, Background, Border Color)
+- Hover (Text & Icon Color, Background, Border Color, Transition Duration)
+
+### Style — Copied State
+
+- Text & Icon Color
+- Background (Solid / Gradient)
+- Border Color
+- Copied Icon Size
 
 ---
 
@@ -170,6 +182,27 @@ The widget includes:
 ---
 
 ## Changelog
+
+### Version 1.1.0
+
+- **New**: Copied Icon — choose a separate icon (from Elementor Icon Library) to display during the "Copied!" state. Defaults to a checkmark (fas fa-check).
+- **New**: Copied State style section — customize text/icon color, background (solid/gradient), border color, and icon size independently for the copied state.
+- **New**: Icon visibility is now handled via pure CSS class toggling (`ctcew-button--copied`), making the transition instantaneous and reliable across all browsers.
+- **Fix**: Copied icon now renders correctly — previous versions used innerHTML cloning which broke Font Awesome's SVG replacement.
+- **Fix**: Copied icon renders even when no normal icon is set.
+- **Fix**: `overflow: hidden` removed from button — was clipping icons, especially when the copied state icon size was set larger.
+- **Fix**: Hover background CSS override removed — `background-color: transparent` in the stylesheet was overriding Elementor's hover background controls.
+- **Fix**: Icon Position and Icon Spacing controls now remain visible when only a Copied Icon is set (no normal icon).
+- **Fix**: Version number corrected to follow semantic versioning.
+
+### Version 1.0.5
+
+- **Fix**: Critical clipboard fallback bug resolved. The button now correctly copies text on iOS Safari and older devices using an improved legacy method.
+- **Fix**: Resolved an issue where the copy script and styles wouldn't load when placed inside an Elementor Loop template with ACF dynamic tags.
+- **Fix**: JS logic completely rewritten to be synchronous and optimizer-friendly, fixing silent failures on some WordPress configurations.
+- **Update**: Added automatic cache clearing (Elementor, WP Rocket, LiteSpeed, etc.) upon plugin deactivation or deletion to prevent stale layout issues.
+- **Update**: Improved default styling with a responsive layout, a purple gradient, and an animated icon swap (copy to checkmark) upon clicking.
+- **UI**: Rearranged Elementor Style panel controls for better usability (Border Type → Border Radius → Box Shadow now uses native Elementor Group Controls).
 
 ### Version 1.0.3
 
