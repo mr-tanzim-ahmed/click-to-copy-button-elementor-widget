@@ -110,9 +110,9 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'copied_icon',
 			[
-				'label'   => __( 'Copied Icon', 'click-to-copy-elementor-widget' ),
-				'type'    => \Elementor\Controls_Manager::ICONS,
-				'default' => [
+				'label'       => __( 'Copied Icon', 'click-to-copy-elementor-widget' ),
+				'type'        => \Elementor\Controls_Manager::ICONS,
+				'default'     => [
 					'value'   => 'fas fa-check',
 					'library' => 'fa-solid',
 				],
@@ -435,8 +435,6 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-
-
 		$this->add_responsive_control(
 			'copied_icon_size',
 			[
@@ -461,13 +459,9 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 	 * plays nicely with dynamic tags.
 	 */
 	private function set_button_attributes( array $settings ) {
-		// Strip HTML tags and decode entities (e.g. from ACF fields) so we only copy plain text.
-<<<<<<< HEAD
 		$code_raw = isset( $settings['code_text'] ) && is_scalar( $settings['code_text'] ) ? (string) $settings['code_text'] : '';
 		$code     = html_entity_decode( wp_strip_all_tags( $code_raw ) );
 		$stretch  = ! empty( $settings['position'] ) && 'stretch' === $settings['position'];
-=======
->>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
 
 		$this->add_render_attribute( 'button', 'type', 'button' );
 		$this->add_render_attribute( 'button', 'class', 'ctcew-button' );
@@ -511,6 +505,7 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 	 *
 	 * @param array  $icon_value  The Elementor icon value array.
 	 * @param string $extra_class Additional CSS class (e.g. 'ctcew-button__normal-icon').
+	 * @param bool   $is_hidden   Whether the icon starts hidden.
 	 */
 	private function render_icon_with_class( array $icon_value, $extra_class, $is_hidden = false ) {
 		$style = $is_hidden ? ' style="display: none;"' : '';
@@ -547,14 +542,10 @@ class Click_To_Copy_Widget extends \Elementor\Widget_Base {
 				<?php endif; ?>
 			<?php endif; ?>
 
-<<<<<<< HEAD
 			<?php
 			$display_text = isset( $settings['code_text'] ) && is_scalar( $settings['code_text'] ) ? (string) $settings['code_text'] : '';
 			?>
 			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( wp_strip_all_tags( $display_text ) ); ?></span>
-=======
-			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo esc_html( wp_strip_all_tags( $settings['code_text'] ) ); ?></span>
->>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
 
 			<?php if ( $has_any_icon && 'after' === $icon_pos ) : ?>
 				<?php if ( $has_icon ) : ?>

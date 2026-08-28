@@ -3,11 +3,7 @@
  * Plugin Name: Click to Copy Button Elementor Widget
  * Plugin URI: https://github.com/mr-tanzim-ahmed/click-to-copy-button-elementor-widget
  * Description: Adds a "Click to Copy" button widget to Elementor. Great for coupon codes, referral links, API keys, or any short text a visitor needs to copy in one tap — with a Safari/iOS-safe clipboard fallback and full Elementor style controls.
-<<<<<<< HEAD
- * Version: 1.1.0
-=======
- * Version: 1.0.5
->>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
+ * Version: 1.1.1
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Requires Plugins: elementor
@@ -28,11 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'CTCEW_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CTCEW_URL', plugin_dir_url( __FILE__ ) );
-<<<<<<< HEAD
-define( 'CTCEW_VERSION', '1.1.0' );
-=======
-define( 'CTCEW_VERSION', '1.0.5' );
->>>>>>> 2e3e6ccc343ed6908fc710b8acd34c6632c8d903
+define( 'CTCEW_VERSION', '1.1.1' );
 define( 'CTCEW_MIN_ELEMENTOR_VERSION', '3.5.0' );
 define( 'CTCEW_MIN_PHP_VERSION', '7.4' );
 
@@ -161,7 +153,10 @@ add_action(
 );
 
 /**
- * Register the widget's CSS and JS. We only register them here —
+ * Register the widget's CSS and JS handles early on 'init' so they are
+ * available before Elementor ever tries to enqueue them (header templates,
+ * AJAX renders, editor previews, optimisation plugins, etc.).
+ *
  * Elementor actually enqueues them (once per page, no matter how many
  * times the widget is used) via get_style_depends() / get_script_depends()
  * on the widget class itself, both on the live site and inside the editor
@@ -169,7 +164,7 @@ add_action(
  */
 function ctcew_register_assets() {
 	$asset_version = CTCEW_VERSION . '.' . filemtime( CTCEW_PATH . 'assets/click-to-copy.js' );
-	
+
 	wp_register_style(
 		'ctcew-style',
 		CTCEW_URL . 'assets/click-to-copy.css',
@@ -184,5 +179,4 @@ function ctcew_register_assets() {
 		true
 	);
 }
-add_action( 'wp_enqueue_scripts', 'ctcew_register_assets' );
-add_action( 'elementor/frontend/before_enqueue_scripts', 'ctcew_register_assets' );
+add_action( 'init', 'ctcew_register_assets' );
